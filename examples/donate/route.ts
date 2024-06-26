@@ -18,8 +18,8 @@ import {
 import { prepareTransaction } from '../transaction-utils';
 
 const DONATION_DESTINATION_WALLET =
-  '3h4AtoLTh3bWwaLhdtgQtcC3a3Tokb8NJbtqR9rhp7p6';
-const DONATION_AMOUNT_SOL_OPTIONS = [1, 5, 10];
+  'BLDRZQiqt4ESPz12L9mt4XTBjeEfjoBopGPDMA36KtuZ';
+const DONATION_AMOUNT_SOL_OPTIONS = [0.1, 0.2, 0.5, 1];
 const DEFAULT_DONATION_AMOUNT_SOL = 1;
 
 const app = new OpenAPIHono();
@@ -31,7 +31,7 @@ app.openapi(
     tags: ['Donate'],
     responses: actionsSpecOpenApiGetResponse,
   }),
-  (c) => {
+  (c: { json: (arg0: ActionsSpecGetResponse, arg1: number) => any }) => {
     const { icon, title, description } = getDonateInfo();
     const amountParameterName = 'amount';
     const response: ActionsSpecGetResponse = {
@@ -142,10 +142,9 @@ function getDonateInfo(): Pick<
   'icon' | 'title' | 'description'
 > {
   const icon =
-    'https://ucarecdn.com/7aa46c85-08a4-4bc7-9376-88ec48bb1f43/-/preview/880x864/-/quality/smart/-/format/auto/';
-  const title = 'Donate to Alice';
-  const description =
-    'Cybersecurity Enthusiast | Support my research with a donation.';
+    'https://builderz.dev/_next/static/media/logo-main-color.7ec6de0e.svg';
+  const title = 'Donate to Builderz';
+  const description = 'Support Builderz with a donation.';
   return { icon, title, description };
 }
 async function prepareDonateTransaction(
